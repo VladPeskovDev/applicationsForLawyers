@@ -5,7 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Lawyer extends Model {
     static associate({User, Document, Appointment, Portfolio}) {
-      this.belongsTo(User, { foreignKey: 'userID', as: 'admin' });
+      this.belongsTo(User, { foreignKey: 'userId', as: 'admin' });
       this.hasMany(Document, { foreignKey: 'lawyerID' });
       this.hasMany(Appointment, { foreignKey: 'lawyerID' });
       this.hasMany(Portfolio, { foreignKey: 'lawyerID' });
@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     photo: DataTypes.STRING,
     phone: DataTypes.STRING,
     telegram: DataTypes.STRING,
-    userID: DataTypes.INTEGER
+    userId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Lawyer',
