@@ -15,7 +15,7 @@ module.exports = {
       lawyerID: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Lawyers', 
+          model: 'Lawyers', // Имя таблицы, к которой вы ссылаетесь
           key: 'id'
         },
         onDelete: 'CASCADE',
