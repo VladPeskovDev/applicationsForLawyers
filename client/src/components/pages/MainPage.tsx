@@ -1,19 +1,24 @@
-import React, { useContext } from 'react';
-import { SimpleGrid } from '@chakra-ui/react';
+import React from 'react';
+import { Box, SimpleGrid } from '@chakra-ui/react';
 import LawyerCard from '../ui/LawyerCard';
-import LawyerForm from '../ui/LawyerForm';
 import useLawyers from '../hooks/useLawyers';
 
-export default function MainPage():JSX.Element {
-  const { LawyersSubmitHandler, lawyers, deleteHandler, editHandler } = useLawyers();
+export default function MainPage(): JSX.Element {
+  const { lawyers, deleteHandler, editHandler } = useLawyers();
 
   return (
-    <>
-    <LawyerForm LawyersSubmitHandler={LawyersSubmitHandler}/>
-    <SimpleGrid columns={3} spacing={5}>
-      {lawyers.map((el) => (<LawyerCard lawyer={el} key={el.id} deleteHandler={deleteHandler}
-      editHandler={editHandler}/>))}
-    </SimpleGrid>
-    </>
-  )
+    <Box mt={10} px={4} ml={-4}>  {/* Добавляем отступ сверху и по бокам */}
+      <SimpleGrid columns={3} spacing={5}>
+        {lawyers.map((el) => (
+          <LawyerCard 
+            lawyer={el} 
+            key={el.id} 
+            deleteHandler={deleteHandler} 
+            editHandler={editHandler} 
+            isAdminPage={false} // для MainPage
+          />
+        ))}
+      </SimpleGrid>
+    </Box>
+  );
 }

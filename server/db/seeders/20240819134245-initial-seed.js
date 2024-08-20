@@ -6,19 +6,19 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.bulkInsert('Users', [
       {
-      name: 'Лев Тропин',
+      username: 'Лев Тропин',
       email: "lev@mail.ru",
       password: await bcrypt.hash('12345', 10),
       role: 'admin',
       },
       {
-        name: 'Владислав Песков',
+        username: 'Владислав Песков',
         email: "xfemidax@mail.ru",
         password: await bcrypt.hash('123', 10),
         role: 'admin',
         },
         {
-          name: 'Влад Песков',
+          username: 'Влад Песков',
           email: "xfemidaxx@mail.ru",
           password: await bcrypt.hash('123', 10),
           role: 'user',
@@ -31,7 +31,7 @@ module.exports = {
           name: 'Владислав Песков',
           education: 'Высшее юридическое образование',
           description: 'Специалист по гражданскому и уголовному праву.',
-          photo: 'path/to/photo.jpg',
+          photo: 'https://static.tildacdn.com/tild6661-6334-4238-b333-366637346538/13.jpg',
           phone: '+7 916 578 09 36',
           telegram: '@VladislavPeskov',
           createdAt: new Date(),
@@ -42,7 +42,7 @@ module.exports = {
           name: 'Лев Тропин',
           education: 'Высшее юридическое образование',
           description: 'Специалист по гражданскому и уголовному праву.',
-          photo: 'path/to/photo1.jpg',
+          photo: 'https://avatars.mds.yandex.net/get-ydo/3614230/2a0000017b9bc5ad561e76c1c73ce971395a/diploma',
           phone: '+7 916 578 09 09',
           telegram: '@LevTropin',
           createdAt: new Date(),
