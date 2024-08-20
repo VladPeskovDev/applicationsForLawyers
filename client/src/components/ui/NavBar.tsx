@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import React, { useEffect } from 'react';
 import { Box, Flex, HStack, IconButton, Menu, MenuButton, MenuList, MenuItem, MenuDivider,
   useDisclosure,
@@ -12,7 +13,7 @@ import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
 import { logoutThunk } from '../../redux/auth/authActionThunk';
 
 
-function Nlink({ to, children, ...props }: { to: string; children: React.ReactNode; onClick?: () => void }): JSX.Element {
+function Nlink({ to, children, ...props }: { to: string; ml?: number; children: React.ReactNode; onClick?: () => void }): JSX.Element {
   return (
     <BreadcrumbLink
       as={NavLink}
@@ -76,8 +77,11 @@ export default function NavBar(): JSX.Element {
             )}
             {user.status !== 'logged' ? (
               <>
+               <BreadcrumbItem>
+                <Nlink to="/">Помощь дежурного адвоката</Nlink>
+              </BreadcrumbItem>
                 <BreadcrumbItem>
-                  <Nlink to="/signin">Вход</Nlink>
+                  <Nlink to="/signin" ml={590}>Вход</Nlink>
                 </BreadcrumbItem>
                 <BreadcrumbItem>
                   <Nlink to="/signup">Регистрация</Nlink>
@@ -85,7 +89,7 @@ export default function NavBar(): JSX.Element {
               </>
             ) : (
               <BreadcrumbItem>
-                <Nlink to="/" onClick={logoutHandler}>Выход</Nlink>
+                <Nlink to="/">Помощь дежурного адвоката</Nlink>
               </BreadcrumbItem>
             )}
           </Breadcrumb>

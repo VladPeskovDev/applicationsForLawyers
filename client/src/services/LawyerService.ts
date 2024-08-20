@@ -18,11 +18,11 @@ class LawyerService {
     }
 
     async deleteLawyer(id: number): Promise<ApiResponce> {
-        return this.api.delete(`/api/${id}`);
+        return this.api.delete(`/lawyer/${id}`);
 }
 
 async editLawyer(id: number, obj: LawyerDataType): Promise<LawyerType> {
-    const { data } = await this.api.patch<LawyerType>(`/api/${id}`, obj);
+    const { data } = await this.api.patch<LawyerType>(`/lawyer/${id}`, obj);
     return LawyerSchema.parse(data);
   }
 }
