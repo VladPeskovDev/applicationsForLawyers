@@ -1,13 +1,4 @@
-import {
-  Card,
-  CardBody,
-  Heading,
-  ButtonGroup,
-  Button,
-  Image,
-  Text,
-  Input,
-  Modal,
+import { Card, CardBody, Heading, ButtonGroup, Button, Image, Text, Input, Modal,
   ModalOverlay,
   ModalContent,
   ModalHeader,
@@ -75,7 +66,7 @@ export default function LawyerCard({ lawyer, deleteHandler, editHandler, isAdmin
           width="100%"
           color="white"
           p="4"
-          bgGradient="linear(to-t, rgba(0, 0, 0, 0.7), transparent)" // градиент для улучшения читабельности текста
+          bgGradient="linear(to-t, rgba(0, 0, 0, 0.7), transparent)" // градиент для читабельности текста
         >
           <Heading size="md">{lawyer.name}</Heading>
           <Text>{lawyer.education}</Text>

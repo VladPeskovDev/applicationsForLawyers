@@ -31,7 +31,7 @@ export default function SignUpPage(): JSX.Element {
           mb={4}
           color={useColorModeValue('gray.900', 'gray.100')}
         >
-          Sign Up
+          Регистрация 
         </Text>
 
         <VStack spacing={4}>
@@ -69,7 +69,7 @@ export default function SignUpPage(): JSX.Element {
           </FormControl>
 
           <Button type="submit" colorScheme="blue" w="full" mt={4}>
-            Create Account
+            Зарегистрироваться
           </Button>
         </VStack>
       </Box>
