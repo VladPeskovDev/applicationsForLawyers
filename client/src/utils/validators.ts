@@ -4,7 +4,7 @@ export const LawyerSchema = z.object({
     id: z.number(),
     name: z.string(),
     userId: z.number().nullable().optional(), 
-    education: z.string(),
+    education: z.string().nullable(),
     description: z.string(),
     photo: z.string(),
     phone: z.string(),

@@ -13,7 +13,7 @@ class LawyerService {
     }
 
     async addLawyer(obj: LawyerDataType): Promise<LawyerType> {
-        const {data} = await this.api.post<LawyerType>('/api', obj);
+        const {data} = await this.api.post<LawyerType>('/lawyer', obj);
         return LawyerSchema.parse(data);
     }
 
