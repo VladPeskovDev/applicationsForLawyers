@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Button, Input, Stack , Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton } from '@chakra-ui/react';
 
-
 type PropsType = {
   LawyersSubmitHandler: (e: React.FormEvent<HTMLFormElement>) => void;
 };
@@ -12,20 +11,17 @@ export default function LawyerForm({ LawyersSubmitHandler }: PropsType): JSX.Ele
   const openModal = (): void => setIsOpen(true);
   const closeModal = (): void => setIsOpen(false);
 
-
-  const wrappedLawyersSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  const wrappedLawyersSubmitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
     LawyersSubmitHandler(e);
     closeModal();
   }
-
   return (
     <>
-      <Button onClick={openModal} colorScheme="purple" mt={8} mb={8}>Добавить Задачу</Button>
-
+      <Button onClick={openModal} colorScheme="teal" mt={8} mb={8}>Добавить нового адвоката</Button>
       <Modal isOpen={isOpen} onClose={closeModal}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Добавить новую задачу</ModalHeader>
+          <ModalHeader>Добавить нового адвоката</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Box onSubmit={wrappedLawyersSubmitHandler} as="form" mt={3}>
@@ -37,12 +33,11 @@ export default function LawyerForm({ LawyersSubmitHandler }: PropsType): JSX.Ele
                 <Input name="phone" placeholder="phone" size="md" />
                 <Input name="telegram" placeholder="telegram" size="md" />
                 <Button type="submit" colorScheme="green">
-                  Добавить Задачу
+                  Добавить нового адвоката
                 </Button>
               </Stack>
             </Box>
           </ModalBody>
-
           <ModalFooter>
             <Button colorScheme="blue" mr={3} onClick={closeModal}>
               Закрыть

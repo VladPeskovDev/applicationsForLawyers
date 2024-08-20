@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import LawyersSlice from './Lawyers/LawyersSlice';
-//import authSlice from './auth/authSlice';
+import authSlice from './auth/authSlice';
 
 
 export const store = configureStore({
     reducer: {
         lawyers: LawyersSlice.reducer,
-        //auth: authSlice.reducer,
+        auth: authSlice.reducer,
     },
   })
 
