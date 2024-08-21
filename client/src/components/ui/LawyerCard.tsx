@@ -47,14 +47,14 @@ export default function LawyerCard({ lawyer, deleteHandler, editHandler, isAdmin
 
   return (
     <Card maxW="md" borderRadius="lg" overflow="hidden" position="relative">
-      <Box position="relative" height="575px" width="100%" mb={-10}>
+      <Box position="relative" height="490px" width="100%" mb={-10}>
         <Image 
           src={lawyer.photo}
           alt="Lawyer's Photo"
           objectFit="cover"
           width="100%"
           height="100%"
-          opacity={0.9} // делаем изображение полупрозрачным
+          opacity={0.85} // делаем изображение полупрозрачным
           position="absolute"
           top="0"
           left="0"

@@ -1,5 +1,4 @@
 'use strict';
-
 /** @type {import('sequelize-cli').Migration} */
 require('dotenv').config();
 const bcrypt = require('bcrypt');
