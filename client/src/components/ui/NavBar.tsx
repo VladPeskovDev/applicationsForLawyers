@@ -68,7 +68,7 @@ export default function NavBar(): JSX.Element {
               <Nlink to="/">Наша команда</Nlink>
             </BreadcrumbItem>
             <BreadcrumbItem>
-              <Nlink to="/filter">Наши кейсы</Nlink>
+              <Nlink to="/cases">Наши кейсы</Nlink>
             </BreadcrumbItem>
             {user.status === 'logged' && user.id === 2 && (
               <BreadcrumbItem>
@@ -89,7 +89,7 @@ export default function NavBar(): JSX.Element {
               </>
             ) : (
               <BreadcrumbItem>
-                <Nlink to="/">Помощь дежурного адвоката</Nlink>
+                <Nlink to="/help">Помощь дежурного адвоката</Nlink>
               </BreadcrumbItem>
             )}
           </Breadcrumb>
