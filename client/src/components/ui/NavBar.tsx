@@ -63,7 +63,7 @@ export default function NavBar(): JSX.Element {
         />
         <HStack spacing={8} alignItems="center" color="white">
           <Box>{user.status === 'logged' ? user.username : 'гость'}</Box>
-          <Breadcrumb as="nav" separator=">" color="white">
+          <Breadcrumb as="nav" separator={<Box as="span" borderRadius="full" w={2} h={2} bg="currentColor" display="inline-block" />} color="white">
             <BreadcrumbItem>
               <Nlink to="/">Наша команда</Nlink>
             </BreadcrumbItem>
@@ -77,11 +77,8 @@ export default function NavBar(): JSX.Element {
             )}
             {user.status !== 'logged' ? (
               <>
-               <BreadcrumbItem>
-                <Nlink to="/">Помощь дежурного адвоката</Nlink>
-              </BreadcrumbItem>
                 <BreadcrumbItem>
-                  <Nlink to="/signin" ml={590}>Вход</Nlink>
+                  <Nlink to="/signin" ml={840}>Вход</Nlink>
                 </BreadcrumbItem>
                 <BreadcrumbItem>
                   <Nlink to="/signup">Регистрация</Nlink>
