@@ -1,5 +1,4 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import type { AxiosResponse } from "axios";
 import LawyerService from "../../services/LawyerService";
 // eslint-disable-next-line import/no-duplicates
 import type { EditLawyerType, LawyerDataType, LawyerType} from "../../types/LawyerTypes";
@@ -15,14 +14,12 @@ export const getLawyersThunk = createAsyncThunk<ApiResponce>(
         return data;
     });
 
-
 export const createLawyerThunk = createAsyncThunk<LawyerType, LawyerDataType>('lawyers/create',
     async (data) => {
     const lawyer = await LawyerService.addLawyer(data);
     return lawyer;
     });
     
-
 export const deleteLawyerThunk = createAsyncThunk<LawyerType['id'], LawyerType['id']>('lawyers/delete',
     async (id) => {
         await LawyerService.deleteLawyer(id);
