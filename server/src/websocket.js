@@ -14,7 +14,7 @@ const createWebSocketServer = (server) => {
         const response = await axios.post(
           'https://api.openai.com/v1/completions',
           {
-            model: 'text-davinci-003',
+            model: 'gpt-3.5-turbo',
             prompt: userMessage,
             max_tokens: 150,
           },
