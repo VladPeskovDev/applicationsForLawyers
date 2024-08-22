@@ -15,7 +15,7 @@ export default function HelpPage(): JSX.Element {
   return (
     <Flex p={10}
     h="100vh"
-    bg="rgba(255, 255, 255, 0.1)" 
+    bg="rgba(255, 255, 255, 0.05)" 
     mt={10}>
       {/* Левая колонка с текстовыми блоками */}
       <VStack spacing={4} w="70%" mr={8}>

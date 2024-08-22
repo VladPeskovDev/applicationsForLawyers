@@ -1,4 +1,4 @@
-import { Card, CardBody, Heading, ButtonGroup, Button, Image, Text, Input, Modal,
+import { Card, CardBody, Heading, ButtonGroup, Button, Image, Text, Input, Modal, Link, 
   ModalOverlay,
   ModalContent,
   ModalHeader,
@@ -9,9 +9,11 @@ import { Card, CardBody, Heading, ButtonGroup, Button, Image, Text, Input, Modal
   Box,
   Stack,
   Divider,
+  HStack,
   CardFooter,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
+import { FaTelegramPlane } from 'react-icons/fa';
 import type { EditLawyerType, LawyerType } from '../../types/LawyerTypes';
 
 type LawyerCardTypes = {
@@ -74,7 +76,12 @@ export default function LawyerCard({ lawyer, deleteHandler, editHandler, isAdmin
           <Text color="blue.300" fontSize="lg">
             {lawyer.phone}
           </Text>
-          <Text>{lawyer.telegram}</Text>
+          <Link href={`https://t.me/${lawyer.telegram}`} isExternal>
+            <HStack>
+               <FaTelegramPlane /> 
+                 <span>{lawyer.telegram}</span>
+            </HStack>
+          </Link>
         </Box>
       </Box>
 
@@ -143,10 +150,10 @@ export default function LawyerCard({ lawyer, deleteHandler, editHandler, isAdmin
             </>
           ) : (
             <>
-              <Button variant='outline' colorScheme="teal">
+              <Button variant='outline' colorScheme="teal" mr={3} w='190px'>
                 Записать на прием
               </Button>
-              <Button variant="outline" colorScheme="teal" ml={111}>
+              <Button variant="outline" colorScheme="teal" w="190px" >
                 Заказать звонок
               </Button>
             </>
