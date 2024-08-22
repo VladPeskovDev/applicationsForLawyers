@@ -1,23 +1,43 @@
-import React, { useState } from 'react';
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import React, { useEffect, useState } from 'react';
 import { Box, Button, Input, VStack, HStack, Text, Flex, useColorModeValue } from '@chakra-ui/react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addMessage } from '../../redux/chatGPT/chatSlice';
+import type { RootState } from '../../redux/store';
+
 
 export default function HelpPage(): JSX.Element {
-  const [messages, setMessages] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState<string>('');
+  const dispatch = useDispatch();
+  const messages = useSelector((state: RootState) => state.chatGPT.messages);
+  const username = useSelector((state: RootState) => state.auth.user?.username); 
+  const [ws, setWs] = useState<WebSocket | null>(null);
+
+  useEffect(() => {
+    const socket = new WebSocket('ws://localhost:3000'); // Подключение к WebSocket серверу
+    setWs(socket);
+
+    // Получение сообщений от WebSocket сервера
+    socket.onmessage = (event) => {
+      dispatch(addMessage(`Помощник Федор: ${event.data}`));
+    };
+
+    return () => {
+      socket.close(); // Закрываем соединение при размонтировании компонента
+    };
+  }, [dispatch]);
 
   const handleSendMessage = (): void => {
-    if (inputValue.trim() !== '') {
-      setMessages([...messages, inputValue]);
-      setInputValue(''); 
+    if (inputValue.trim() !== '' && ws && username) {
+      dispatch(addMessage(`${username}: ${inputValue}`)); // Добавляем сообщение пользователя в Redux
+      ws.send(inputValue); // Отправляем сообщение на сервер через WebSocket
+      setInputValue(''); // Очищаем поле ввода
     }
   };
 
   return (
-    <Flex p={10}
-    h="100vh"
-    bg="rgba(255, 255, 255, 0.05)" 
-    mt={10}>
-      {/* Левая колонка с текстовыми блоками */}
+    <Flex p={10} h="100vh" bg="rgba(255, 255, 255, 0.05)" mt={10}>
       <VStack spacing={4} w="70%" mr={8}>
         <Box
           p={6}
@@ -25,7 +45,7 @@ export default function HelpPage(): JSX.Element {
           boxShadow="lg"
           w="100%"
           h="250px"
-          backgroundColor={useColorModeValue('gray.900', 'gray.900')}   
+          backgroundColor={useColorModeValue('gray.900', 'gray.900')}
         >
           <Text fontSize="lg" fontWeight="bold">
             Адвокаты по уголовным делам
@@ -36,13 +56,12 @@ export default function HelpPage(): JSX.Element {
         </Box>
 
         <Box
-          bg="rgba(255, 255, 255, 0.7)" // Прозрачный белый фон
           p={6}
           borderRadius="md"
           boxShadow="lg"
           w="100%"
           h="250px"
-          backgroundColor={useColorModeValue('gray.900', 'gray.900')} 
+          backgroundColor={useColorModeValue('gray.900', 'gray.900')}
         >
           <Text fontSize="lg" fontWeight="bold">
             Защита ваших прав
@@ -53,9 +72,8 @@ export default function HelpPage(): JSX.Element {
         </Box>
       </VStack>
 
-      {/* Правая колонка с чатом */}
       <Box
-        bg="rgba(255, 255, 255, 0.7)" 
+        bg="rgba(255, 255, 255, 0.7)"
         p={4}
         borderRadius="md"
         boxShadow="lg"
@@ -63,9 +81,8 @@ export default function HelpPage(): JSX.Element {
         maxH="80vh"
       >
         <VStack spacing={4} h="100%">
-          {/* Окно с перепиской */}
           <Box
-            bg="rgba(255, 255, 255, 0.7)" 
+            bg="rgba(255, 255, 255, 0.7)"
             p={4}
             borderRadius="md"
             boxShadow="inner"
@@ -79,7 +96,7 @@ export default function HelpPage(): JSX.Element {
               messages.map((msg, index) => (
                 <Box
                   key={index}
-                  bg={useColorModeValue('rgba(173, 216, 230, 0.7)', 'rgba(0, 123, 255, 0.9)')} // Прозрачный фон для сообщений
+                  bg={useColorModeValue('rgba(173, 216, 230, 0.7)', 'rgba(0, 123, 255, 0.9)')}
                   p={2}
                   borderRadius="md"
                   mb={2}
@@ -91,13 +108,12 @@ export default function HelpPage(): JSX.Element {
             )}
           </Box>
 
-          {/* Поле ввода и кнопка отправки */}
           <HStack w="100%" spacing={2}>
             <Input
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               placeholder="Введите сообщение..."
-              bg="rgba(255, 255, 255, 0.5)" // Прозрачный фон для ввода
+              bg="rgba(255, 255, 255, 0.5)"
               borderRadius="md"
               backgroundColor={useColorModeValue('gray.400', 'gray.900')}
             />

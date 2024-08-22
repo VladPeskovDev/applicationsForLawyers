@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import LawyersSlice from './Lawyers/LawyersSlice';
 import authSlice from './auth/authSlice';
+import chatSlice from './chatGPT/chatSlice';
 
 
 export const store = configureStore({
     reducer: {
         lawyers: LawyersSlice.reducer,
         auth: authSlice.reducer,
+        chatGPT: chatSlice.reducer,
     },
   })
 
