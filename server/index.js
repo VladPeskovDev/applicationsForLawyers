@@ -1,5 +1,4 @@
 
-
 const axios = require('axios');
 require('dotenv').config();
 
@@ -13,7 +12,7 @@ const makeGptTurboRequest = async () => {
       {
         model: 'gpt-3.5-turbo',
         messages: [
-          { role: 'user', content: 'Расскажи интересный факт о космосе.' }
+          { role: 'user', content: '' }
         ],
         max_tokens: 50,
       },
