@@ -1,4 +1,5 @@
 'use strict';
+const path = require('path');
 /** @type {import('sequelize-cli').Migration} */
 require('dotenv').config();
 const bcrypt = require('bcrypt');
@@ -43,6 +44,22 @@ module.exports = {
           updatedAt: new Date()
         },
       ], {});
+      await queryInterface.bulkInsert(
+        'Cases',
+        [
+          {
+            title: 'Пример кейса',
+            description: 'Описание примера кейса. Этот кейс содержит несколько фотографий.',
+            photo1: '/uploads/photo1.jpg',
+            photo2: '/uploads/photo2.jpg',
+            photo3: '/uploads/photo3.jpg',
+            photo4: '/uploads/photo4.jpg',
+            photo5: '/uploads/photo5.jpg',
+            userID: 2, 
+            createdAt: new Date(),
+            updatedAt: new Date(),
+          }
+        ], {});
   },
 
   async down (queryInterface, Sequelize) {

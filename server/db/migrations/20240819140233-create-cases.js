@@ -2,27 +2,44 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Portfolios', {
+    await queryInterface.createTable('Cases', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      filePath: {
+      title: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      description: {
+        type: Sequelize.TEXT,
+        allowNull: false
+      },
+      photo1: {
         type: Sequelize.STRING
       },
-      lawyerID: {
+      photo2: {
+        type: Sequelize.STRING
+      },
+      photo3: {
+        type: Sequelize.STRING
+      },
+      photo4: {
+        type: Sequelize.STRING
+      },
+      photo5: {
+        type: Sequelize.STRING
+      },
+      userID: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Lawyers', 
+          model: 'Users', // Название таблицы, с которой будет связь
           key: 'id'
         },
         onDelete: 'CASCADE',
         allowNull: false
-      },
-      type: {
-        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -35,6 +52,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Portfolios');
+    await queryInterface.dropTable('Cases');
   }
 };

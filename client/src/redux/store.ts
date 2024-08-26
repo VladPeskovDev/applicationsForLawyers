@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import LawyersSlice from './Lawyers/LawyersSlice';
 import authSlice from './auth/authSlice';
 import chatSlice from './chatGPT/chatSlice';
+import CasesSlice from './cases/CasesSlice';
 
 
 export const store = configureStore({
@@ -9,6 +10,7 @@ export const store = configureStore({
         lawyers: LawyersSlice.reducer,
         auth: authSlice.reducer,
         chatGPT: chatSlice.reducer,
+        cases: CasesSlice.reducer,
     },
   })
 

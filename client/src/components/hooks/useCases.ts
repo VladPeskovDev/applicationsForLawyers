@@ -1,51 +1,43 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
+import { createCaseThunk, deleteCaseThunk, editCaseThunk, getCasesThunk } from '../../redux/cases/CaseAsyncActions';
+import type { CaseType, EditCaseType } from '../../types/CasesTypes';
+import { useAppDispatch, useAppSelector } from './reduxHooks';
 
-interface Case {
-  title: string;
-  images: string[];
-}
+export default function useCases(): {
+  cases: CaseType[];
+  CasesSubmitHandler: (e: React.FormEvent<HTMLFormElement>) => void;
+  deleteCaseHandler: (id: CaseType['id']) => void;
+  editCaseHandler: (obj: EditCaseType) => void;
+} {
+  const cases = useAppSelector((state) => state.cases.data);
+  const dispatch = useAppDispatch();
 
-export default function useCases() {
-  const [cases, setCases] = useState<Case[]>([
-    {
-      title: 'Кейс 1',
-      images: ['image1.jpg', 'image2.jpg', 'image3.jpg', 'image4.jpg', 'image5.jpg'],
-    },
-    {
-      title: 'Кейс 2',
-      images: ['image6.jpg', 'image7.jpg', 'image8.jpg', 'image9.jpg', 'image10.jpg'],
-    },
-  ]);
+  useEffect(() => {
+    void dispatch(getCasesThunk());
+  }, [dispatch]);
 
-  const addCase = (newCase: Case): void => {
-    setCases([...cases, newCase]);
-  };
-
-  const deleteCase = (caseIndex: number): void => {
-    setCases(cases.filter((_, index) => index !== caseIndex));
-  };
-
-  const editCase = (caseIndex: number, updatedCase: Case): void => {
-    const updatedCases = [...cases];
-    updatedCases[caseIndex] = updatedCase;
-    setCases(updatedCases);
-  };
-
-  const handleCaseSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+  const CasesSubmitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const newCase = {
+    const data: CaseType = {
       title: formData.get('title') as string,
-      images: Array.from(formData.getAll('images')) as string[], // assuming images are URLs for simplicity
+      description: formData.get('description') as string,
+      photo1: formData.get('photo1') as string,
+      photo2: formData.get('photo2') as string,
+      photo3: formData.get('photo3') as string,
+      photo4: formData.get('photo4') as string,
+      photo5: formData.get('photo5') as string,
     };
-    addCase(newCase);
+    void dispatch(createCaseThunk(data));
   };
 
-  return {
-    cases,
-    addCase,
-    deleteCase,
-    editCase,
-    handleCaseSubmit, // Возвращаем обработчик формы
+  const deleteCaseHandler = (id: CaseType['id']): void => {
+    void dispatch(deleteCaseThunk(id));
   };
+
+  const editCaseHandler = (obj: EditCaseType): void => {
+    void dispatch(editCaseThunk(obj));
+  };
+
+  return { cases, CasesSubmitHandler, deleteCaseHandler, editCaseHandler };
 }

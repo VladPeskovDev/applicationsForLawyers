@@ -8,7 +8,6 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(User, { foreignKey: 'userId', as: 'admin' });
       this.hasMany(Document, { foreignKey: 'lawyerID' });
       this.hasMany(Appointment, { foreignKey: 'lawyerID' });
-      this.hasMany(Portfolio, { foreignKey: 'lawyerID' });
     }
   }
   Lawyer.init({
