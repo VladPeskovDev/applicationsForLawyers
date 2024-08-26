@@ -78,11 +78,12 @@ export default function NavBar(): JSX.Element {
             {user.status !== 'logged' ? (
               <>
                 <BreadcrumbItem>
-                  <Nlink to="/signin" ml={840}>Вход</Nlink>
+                  <Nlink to="/signin" ml={830}>Вход</Nlink>
                 </BreadcrumbItem>
                 <BreadcrumbItem>
                   <Nlink to="/signup">Регистрация</Nlink>
                 </BreadcrumbItem>
+                
               </>
             ) : (
               <BreadcrumbItem>
@@ -102,10 +103,11 @@ export default function NavBar(): JSX.Element {
                 colorScheme="whiteAlpha"
               />
               <MenuList>
-                <MenuItem>Profile</MenuItem>
-                <MenuItem>Settings</MenuItem>
+                <MenuItem
+                color='black'>Profile</MenuItem>
+                <MenuItem color='black'>Settings</MenuItem>
                 <MenuDivider />
-                <MenuItem onClick={logoutHandler}>Выход</MenuItem>
+                <MenuItem onClick={logoutHandler} color='black'>Выход</MenuItem>
               </MenuList>
             </Menu>
           </Flex>

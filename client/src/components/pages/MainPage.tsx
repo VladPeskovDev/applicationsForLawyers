@@ -8,7 +8,6 @@ export default function MainPage(): JSX.Element {
 
   return (
     <Flex direction="column" w="100%">
-      {/* Первый текстовый блок на всю ширину */}
       <Box
         p={6}
         borderRadius="md"
@@ -25,8 +24,7 @@ export default function MainPage(): JSX.Element {
           Наша команда профессионалов готова помочь вам с любым уголовным делом. Опыт, знания и безупречная репутация — наши главные преимущества.
         </Text>
       </Box>
-
-      {/* Flex контейнер для блоков с шириной 45% */}
+      
       <Flex w="100%" justifyContent="space-between" mt={10}>
         <Box
           p={6}

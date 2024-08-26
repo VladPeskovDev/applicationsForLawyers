@@ -41,7 +41,8 @@ export default function SignUpPage(): JSX.Element {
               placeholder="Name"
               name="username"
               bg={useColorModeValue('gray.100', 'gray.900')}
-              color={useColorModeValue('current', 'white')}
+              color='black'
+              
             />
           </FormControl>
 
@@ -52,6 +53,7 @@ export default function SignUpPage(): JSX.Element {
               name="email"
               placeholder="Email"
               bg={useColorModeValue('gray.100', 'gray.900')}
+              color='black'
             />
           </FormControl>
 
@@ -62,6 +64,7 @@ export default function SignUpPage(): JSX.Element {
               name="password"
               placeholder="Password"
               bg={useColorModeValue('gray.100', 'gray.900')}
+              color='black'
             />
             <Text mt={1} color={useColorModeValue('gray.900', 'gray.100')}>
               At least 8 characters long

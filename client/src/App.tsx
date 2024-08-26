@@ -9,6 +9,7 @@ import CasesPage from './components/pages/CasesPage';
 import HelpPage from './components/pages/HelpPage';
 import { useAppDispatch } from './components/hooks/reduxHooks';
 import { checkUserThunk } from './redux/auth/authActionThunk';
+import { ProtectedRoute } from './ProtectedRoute';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -44,7 +45,11 @@ function App(): JSX.Element {
         },
         {
           path: 'adminiem7disk',
-          element: <AdminPage />,
+          element: (
+            <ProtectedRoute requiredId={2}>
+              <AdminPage />
+            </ProtectedRoute>
+          ),
         },
       ],
     },
