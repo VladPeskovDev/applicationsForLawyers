@@ -7,6 +7,7 @@ import { addMessage } from '../../redux/chatGPT/chatSlice';
 import type { RootState } from '../../redux/store';
 
 
+
 export default function HelpPage(): JSX.Element {
   const [inputValue, setInputValue] = useState<string>('');
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ export default function HelpPage(): JSX.Element {
   const [ws, setWs] = useState<WebSocket | null>(null);
 
   useEffect(() => {
-    const socket = new WebSocket('ws://localhost:3000'); // Подключение к WebSocket серверу
+    const socket = new WebSocket('ws://localhost:3000'); 
     setWs(socket);
 
     // Получение сообщений от WebSocket сервера
@@ -46,6 +47,7 @@ export default function HelpPage(): JSX.Element {
           w="100%"
           h="250px"
           backgroundColor={useColorModeValue('gray.900', 'gray.900')}
+          
         >
           <Text fontSize="lg" fontWeight="bold">
             Адвокаты по уголовным делам
@@ -62,6 +64,7 @@ export default function HelpPage(): JSX.Element {
           w="100%"
           h="250px"
           backgroundColor={useColorModeValue('gray.900', 'gray.900')}
+          opacity={0.75}
         >
           <Text fontSize="lg" fontWeight="bold">
             Защита ваших прав
@@ -96,7 +99,7 @@ export default function HelpPage(): JSX.Element {
               messages.map((msg, index) => (
                 <Box
                   key={index}
-                  bg={useColorModeValue('rgba(173, 216, 230, 0.7)', 'rgba(0, 123, 255, 0.9)')}
+                  bg={useColorModeValue('rgba(173, 216, 230, 0.99)', 'rgba(0, 123, 255, 0.99)')}
                   p={2}
                   borderRadius="md"
                   mb={2}
@@ -108,10 +111,11 @@ export default function HelpPage(): JSX.Element {
             )}
           </Box>
 
-          <HStack w="100%" spacing={2}>
+          <HStack w="100%" spacing={2} >
             <Input
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
               placeholder="Введите сообщение..."
               bg="rgba(255, 255, 255, 0.5)"
               borderRadius="md"
@@ -120,6 +124,7 @@ export default function HelpPage(): JSX.Element {
             <Button
               colorScheme="blue"
               onClick={handleSendMessage}
+
               disabled={inputValue.trim() === ''}
             >
               Отправить
