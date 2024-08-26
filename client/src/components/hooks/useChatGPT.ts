@@ -11,7 +11,7 @@ export default function useChatGPT(): {
   const [ws, setWs] = useState<WebSocket | null>(null);
   const dispatch = useDispatch();
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const username = useSelector((state: RootState) => state.auth.user?.username);
+  const username = useSelector((state: RootState) => state.auth.user?.username) || 'Гость';
 
   useEffect(() => {
     const socket = new WebSocket('ws://localhost:3000'); // Подключение к WebSocket серверу
@@ -22,13 +22,13 @@ export default function useChatGPT(): {
     };
 
     return () => {
-      socket.close(); // Закрываем соединение при размонтировании компонента
+      socket.close(); 
     };
   }, [dispatch]);
 
   const sendMessage = (message: string): void => {
     if (ws) {
-      ws.send(message); // Отправляем сообщение через WebSocket
+      ws.send(message); 
       dispatch(addMessage(`${username}: ${message}`)); // Обновляем состояние для пользователя
     }
   };

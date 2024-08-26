@@ -1,22 +1,25 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import { Box, Button, Flex, HStack,
+  Input,
+  Text,
+  useColorModeValue,
+  VStack,
+} from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
-import { Box, Button, Input, VStack, HStack, Text, Flex, useColorModeValue } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addMessage } from '../../redux/chatGPT/chatSlice';
 import type { RootState } from '../../redux/store';
-
-
 
 export default function HelpPage(): JSX.Element {
   const [inputValue, setInputValue] = useState<string>('');
   const dispatch = useDispatch();
   const messages = useSelector((state: RootState) => state.chatGPT.messages);
-  const username = useSelector((state: RootState) => state.auth.user?.username); 
+  const username = useSelector((state: RootState) => state.auth.user?.username);
   const [ws, setWs] = useState<WebSocket | null>(null);
 
   useEffect(() => {
-    const socket = new WebSocket('ws://localhost:3000'); 
+    const socket = new WebSocket('ws://localhost:3000');
     setWs(socket);
 
     // Получение сообщений от WebSocket сервера
@@ -47,13 +50,14 @@ export default function HelpPage(): JSX.Element {
           w="100%"
           h="250px"
           backgroundColor={useColorModeValue('gray.900', 'gray.900')}
-          
+          opacity={0.75}
         >
           <Text fontSize="lg" fontWeight="bold">
             Адвокаты по уголовным делам
           </Text>
           <Text mt={2}>
-            Наша команда профессионалов готова помочь вам с любым уголовным делом. Опыт, знания и безупречная репутация — наши главные преимущества.
+            Наша команда профессионалов готова помочь вам с любым уголовным делом. Опыт, знания и
+            безупречная репутация — наши главные преимущества.
           </Text>
         </Box>
 
@@ -70,19 +74,13 @@ export default function HelpPage(): JSX.Element {
             Защита ваших прав
           </Text>
           <Text mt={2}>
-            Мы гарантируем качественную юридическую помощь и защиту ваших прав. Свяжитесь с нами для получения консультации.
+            Мы гарантируем качественную юридическую помощь и защиту ваших прав. Свяжитесь с нами для
+            получения консультации.
           </Text>
         </Box>
       </VStack>
 
-      <Box
-        bg="rgba(255, 255, 255, 0.7)"
-        p={4}
-        borderRadius="md"
-        boxShadow="lg"
-        w="30%"
-        maxH="80vh"
-      >
+      <Box bg="rgba(255, 255, 255, 0.7)" p={4} borderRadius="md" boxShadow="lg" w="30%" maxH="80vh">
         <VStack spacing={4} h="100%">
           <Box
             bg="rgba(255, 255, 255, 0.7)"
@@ -94,7 +92,9 @@ export default function HelpPage(): JSX.Element {
             overflowY="auto"
           >
             {messages.length === 0 ? (
-              <Text color="gray.500">Напишите помощнику адвоката и получите консультацию прямо сейчас</Text>
+              <Text color="gray.500">
+                Напишите помощнику адвоката и получите консультацию прямо сейчас
+              </Text>
             ) : (
               messages.map((msg, index) => (
                 <Box
@@ -111,7 +111,7 @@ export default function HelpPage(): JSX.Element {
             )}
           </Box>
 
-          <HStack w="100%" spacing={2} >
+          <HStack w="100%" spacing={2}>
             <Input
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
@@ -124,7 +124,6 @@ export default function HelpPage(): JSX.Element {
             <Button
               colorScheme="blue"
               onClick={handleSendMessage}
-
               disabled={inputValue.trim() === ''}
             >
               Отправить
