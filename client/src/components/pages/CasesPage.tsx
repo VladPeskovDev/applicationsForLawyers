@@ -7,7 +7,7 @@ export default function CasesPage(): JSX.Element {
   const { cases } = useCases();
 
   return (
-    <Box p={8}>
+    <Box p={3}>
       {cases.map((caseItem) => (
         <CasesCard key={caseItem.id} caseItem={caseItem} />
       ))}

@@ -7,13 +7,15 @@ const authRouter = require('./routes/authRouter');
 const tokenRouter = require('./routes/token.router');
 const casesRouter = require('./routes/casesRouter');
 
+
+
 const app = express();
 
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use('/uploads', express.static(path.join(__dirname, 'file')));
+app.use('/api/uploads', express.static(path.join(__dirname, 'uploads')));
      
 
 app.use('/api/lawyer', lawyerRouter);

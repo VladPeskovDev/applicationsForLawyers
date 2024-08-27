@@ -5,6 +5,7 @@ import type { CaseType } from '../../types/CasesTypes';
 export default function CasesCard({ caseItem }: { caseItem: CaseType }): JSX.Element {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  console.log(caseItem);
 
   const handleImageClick = (image: string): void => {
     setSelectedImage(image);
@@ -20,13 +21,32 @@ export default function CasesCard({ caseItem }: { caseItem: CaseType }): JSX.Ele
         {caseItem.description}
       </Text>
       <SimpleGrid columns={5} spacing={4}>
-        {[caseItem.photo1, caseItem.photo2, caseItem.photo3, caseItem.photo4, caseItem.photo5]
-          .filter(Boolean) // Фильтруем пустые значения
-          .map((image, index) => (
-            <Box key={index} onClick={() => handleImageClick(image!)} cursor="pointer">
-              <Image src={image} alt={`case image ${index}`} objectFit="cover" />
-            </Box>
-          ))}
+        {caseItem.photo1 && (
+          <Box onClick={() => handleImageClick(caseItem.photo1)} cursor="pointer">
+            <Image src={`/api${caseItem.photo1}`} alt="case image 1" objectFit="cover" />
+
+          </Box>
+        )}
+        {caseItem.photo2 && (
+          <Box onClick={() => handleImageClick(caseItem.photo2)} cursor="pointer">
+            <Image src={caseItem.photo2} alt="case image 2" objectFit="cover" />
+          </Box>
+        )}
+        {caseItem.photo3 && (
+          <Box onClick={() => handleImageClick(caseItem.photo3)} cursor="pointer">
+            <Image src={caseItem.photo3} alt="case image 3" objectFit="cover" />
+          </Box>
+        )}
+        {caseItem.photo4 && (
+          <Box onClick={() => handleImageClick(caseItem.photo4)} cursor="pointer">
+            <Image src={caseItem.photo4} alt="case image 4" objectFit="cover" />
+          </Box>
+        )}
+        {caseItem.photo5 && (
+          <Box onClick={() => handleImageClick(caseItem.photo5)} cursor="pointer">
+            <Image src={caseItem.photo5} alt="case image 5" objectFit="cover" />
+          </Box>
+        )}
       </SimpleGrid>
 
       {selectedImage && (
