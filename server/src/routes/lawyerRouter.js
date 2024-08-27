@@ -19,7 +19,7 @@ lawyerRouter
       if (userId !== 2) {
         return res.status(403).json({ error: 'You are not authorized to create lawyer posts.' });
       }
-// Создание карточки адвоката
+
       const post = await Lawyer.create({
         name: req.body.name,
         education: req.body.education,

@@ -5,7 +5,7 @@ const { verifyAccessToken } = require('./middlewares/verifyTokens');
 require('dotenv').config();
 
 let lastRequestTime = 0;
-const requestInterval = 5000; // Ограничение на 1 запрос в 5 секунд
+const requestInterval = 5000; 
 
 const createWebSocketServer = (server) => {
   const wss = new WebSocketServer({ server });
