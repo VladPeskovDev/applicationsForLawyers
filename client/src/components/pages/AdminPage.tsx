@@ -9,7 +9,7 @@ import CaseForm from '../ui/CasesForm';
 
 export default function AdminPage(): JSX.Element {
   const { lawyers, deleteHandler, editHandler, LawyersSubmitHandler } = useLawyers();
-  const { cases, deleteCase, editCase, handleCaseSubmit } = useCases(); // Получаем обработчик из хука
+  const { cases, deleteCaseHandler, editCaseHandler, CasesSubmitHandler } = useCases(); 
 
   return (
     <>
@@ -28,7 +28,7 @@ export default function AdminPage(): JSX.Element {
       </SimpleGrid>
       
       
-      <CaseForm CasesSubmitHandler={handleCaseSubmit} />
+      <CaseForm CasesSubmitHandler={CasesSubmitHandler} />
       {cases.map((caseItem, index) => (
         <Box key={index} mb={4}>
           <CasesCard caseItem={caseItem} />
