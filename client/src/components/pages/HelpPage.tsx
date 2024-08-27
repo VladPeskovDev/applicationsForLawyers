@@ -1,12 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { Box, Button, Flex, HStack,
-  Input,
-  Text,
-  useColorModeValue,
-  VStack,
-} from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
+import { Box, Button, Flex, HStack, Input, Text, useColorModeValue, VStack } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addMessage } from '../../redux/chatGPT/chatSlice';
 import type { RootState } from '../../redux/store';
@@ -22,26 +15,26 @@ export default function HelpPage(): JSX.Element {
     const socket = new WebSocket('ws://localhost:3000');
     setWs(socket);
 
-    // Получение сообщений от WebSocket сервера
     socket.onmessage = (event) => {
       dispatch(addMessage(`Помощник Федор: ${event.data}`));
     };
 
     return () => {
-      socket.close(); // Закрываем соединение при размонтировании компонента
+      socket.close();
     };
   }, [dispatch]);
 
   const handleSendMessage = (): void => {
     if (inputValue.trim() !== '' && ws && username) {
-      dispatch(addMessage(`${username}: ${inputValue}`)); // Добавляем сообщение пользователя в Redux
-      ws.send(inputValue); // Отправляем сообщение на сервер через WebSocket
-      setInputValue(''); // Очищаем поле ввода
+      dispatch(addMessage(`${username}: ${inputValue}`));
+      ws.send(inputValue);
+      setInputValue('');
     }
   };
 
   return (
     <Flex p={10} h="100vh" bg="rgba(255, 255, 255, 0.05)" mt={10}>
+      {/* Левая колонка с текстовыми блоками */}
       <VStack spacing={4} w="70%" mr={8}>
         <Box
           p={6}
@@ -52,10 +45,10 @@ export default function HelpPage(): JSX.Element {
           backgroundColor={useColorModeValue('gray.900', 'gray.900')}
           opacity={0.75}
         >
-          <Text fontSize="lg" fontWeight="bold">
+          <Text fontSize="lg" fontWeight="bold" color="white">
             Адвокаты по уголовным делам
           </Text>
-          <Text mt={2}>
+          <Text mt={2} color="white">
             Наша команда профессионалов готова помочь вам с любым уголовным делом. Опыт, знания и
             безупречная репутация — наши главные преимущества.
           </Text>
@@ -70,17 +63,25 @@ export default function HelpPage(): JSX.Element {
           backgroundColor={useColorModeValue('gray.900', 'gray.900')}
           opacity={0.75}
         >
-          <Text fontSize="lg" fontWeight="bold">
+          <Text fontSize="lg" fontWeight="bold" color="white">
             Защита ваших прав
           </Text>
-          <Text mt={2}>
+          <Text mt={2} color="white">
             Мы гарантируем качественную юридическую помощь и защиту ваших прав. Свяжитесь с нами для
             получения консультации.
           </Text>
         </Box>
       </VStack>
 
-      <Box bg="rgba(255, 255, 255, 0.7)" p={4} borderRadius="md" boxShadow="lg" w="30%" maxH="80vh">
+      {/* Правая колонка с чатом */}
+      <Box
+        bg="rgba(255, 255, 255, 0.7)"
+        p={4}
+        borderRadius="md"
+        boxShadow="lg"
+        w="30%"
+        maxH="80vh"
+      >
         <VStack spacing={4} h="100%">
           <Box
             bg="rgba(255, 255, 255, 0.7)"

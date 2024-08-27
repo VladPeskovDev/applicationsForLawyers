@@ -36,7 +36,7 @@ export default function SignUpPage(): JSX.Element {
 
         <VStack spacing={4}>
           <FormControl isRequired>
-            <FormLabel color={useColorModeValue('gray.900', 'gray.100')}>Name</FormLabel>
+            <FormLabel color={useColorModeValue('gray.900', 'gray.100')}>Введите имя</FormLabel>
             <Input
               placeholder="Name"
               name="username"
@@ -51,7 +51,7 @@ export default function SignUpPage(): JSX.Element {
             <Input
               type="email"
               name="email"
-              placeholder="Email"
+              placeholder="Введите ваш email"
               bg={useColorModeValue('gray.100', 'gray.900')}
               color='black'
             />
