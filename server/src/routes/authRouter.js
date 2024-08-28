@@ -7,6 +7,8 @@ const cookieConfig = require('../configs/cookie.config');
 authRouter.post('/signup', async (req, res) => {
   const { email, username, password } = req.body;
 
+  //console.log( { email, username, password });
+
   if (!email || !username || !password) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
