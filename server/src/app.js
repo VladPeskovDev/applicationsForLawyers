@@ -15,8 +15,9 @@ app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use('/api/uploads', express.static(path.join(__dirname, 'uploads')));
-//app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+//app.use('/api/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/api/uploads', express.static(path.resolve(__dirname, '../uploads')));
+
      
 
 app.use('/api/lawyer', lawyerRouter);
