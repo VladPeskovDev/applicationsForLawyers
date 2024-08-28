@@ -32,8 +32,8 @@ export default function AdminPage(): JSX.Element {
         <Box key={index} mb={4}>
           <CasesCard caseItem={caseItem} />
           <HStack mt={4}>
-            <Button colorScheme="red" onClick={() => deleteCaseHandler(caseItem.id)}>Удалить</Button>
-            <Button colorScheme="blue" onClick={() => editCaseHandler(index, { ...caseItem, title: 'Обновленный заголовок' })}>
+            <Button colorScheme="gray" variant='outline' onClick={() => deleteCaseHandler(caseItem.id)}>Удалить</Button>
+            <Button colorScheme="gray" variant='outline' onClick={() => editCaseHandler(caseItem.id)}>
               Редактировать
             </Button>
           </HStack>

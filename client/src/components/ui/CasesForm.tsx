@@ -58,7 +58,6 @@ export default function CaseForm({ CasesSubmitHandler }: PropsType): JSX.Element
                 <Input name="title" placeholder="Заголовок" size="md" />
                 <Input name="description" placeholder="Описание" size="md" />
 
-                {/* Поля для загрузки фотографий */}
                 <Input
                   type="file"
                   accept="image/*"
