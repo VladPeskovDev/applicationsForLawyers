@@ -21,8 +21,8 @@ class CaseService {
         return this.api.delete(`/cases/${id}`);
 }
 
-async editCases(id: number, obj: CaseDataType): Promise<CaseType> {
-    const { data } = await this.api.patch<CaseType>(`/cases/${id}`, obj);
+    async editCases(id: number, obj: CaseDataType): Promise<CaseType> {
+        const { data } = await this.api.patch<CaseType>(`/cases/${id}`, obj);
     return CaseSchema.parse(data);
   }
 }
