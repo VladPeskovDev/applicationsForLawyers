@@ -36,5 +36,26 @@ casesRouter.route('/').post(verifyAccessToken, async (req, res) => {
   }
 });
 
+casesRouter.route('/:id').delete(verifyAccessToken, async (req, res) => {
+  const { id } = req.params;
+  if (Number.isNaN(+id)) {
+    return res.status(400).json({ message: 'Id must be a number' });
+  }
+  try {
+    const CasesDelete = await Cases.findByPk(req.params.id);
+    if (!CasesDelete) {
+      return res.status(404).json({ message: 'Cases not found' });
+    }
+    const userId = res.locals.user.id;
+    if (userId !== 2) {
+      return res.status(401).json({ message: 'Unable to complete' });
+    }
+    await CasesDelete.destroy();
+    res.json({ message: 'Cases deleted' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
 
 module.exports = casesRouter;

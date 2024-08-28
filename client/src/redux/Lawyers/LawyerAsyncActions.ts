@@ -26,10 +26,8 @@ export const deleteLawyerThunk = createAsyncThunk<LawyerType['id'], LawyerType['
         return id;
 });
 
-
-
 export const editLawyerThunk = createAsyncThunk<LawyerType, EditLawyerType>(
-    'tasks/edit',
+    'lawyers/edit',
     async ({ id, data }) => {
       const lawyer = await LawyerService.editLawyer(id, data);
       return lawyer;

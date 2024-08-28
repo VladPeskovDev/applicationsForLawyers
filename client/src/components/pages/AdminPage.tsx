@@ -27,14 +27,13 @@ export default function AdminPage(): JSX.Element {
         ))}
       </SimpleGrid>
       
-      
       <CaseForm CasesSubmitHandler={CasesSubmitHandler} />
       {cases.map((caseItem, index) => (
         <Box key={index} mb={4}>
           <CasesCard caseItem={caseItem} />
           <HStack mt={4}>
-            <Button colorScheme="red" onClick={() => deleteCase(index)}>Удалить</Button>
-            <Button colorScheme="blue" onClick={() => editCase(index, { ...caseItem, title: 'Обновленный заголовок' })}>
+            <Button colorScheme="red" onClick={() => deleteCaseHandler(caseItem.id)}>Удалить</Button>
+            <Button colorScheme="blue" onClick={() => editCaseHandler(index, { ...caseItem, title: 'Обновленный заголовок' })}>
               Редактировать
             </Button>
           </HStack>

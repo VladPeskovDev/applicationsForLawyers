@@ -10,4 +10,4 @@ export type ApiResponce = CaseType[];
 export type EditCaseType = {
     id: number;
     data: CaseDataType;
-}
+};
