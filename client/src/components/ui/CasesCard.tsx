@@ -18,7 +18,7 @@ export default function CasesCard({ caseItem }: { caseItem: CaseType }): JSX.Ele
     opacity={0.75}>
         {caseItem.title}
       </Text>
-      <Text fontSize="2xl" fontWeight="bold" mb={4} color='black'>
+      <Text fontSize="2xl" fontWeight="bold" mb={4} color='black' backgroundColor={useColorModeValue('gray.900', 'gray.900')}>
         {caseItem.description}
       </Text>
       <SimpleGrid columns={5} spacing={4}>
