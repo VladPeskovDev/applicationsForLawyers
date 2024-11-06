@@ -13,7 +13,7 @@ bot.onText(/\/start/, (msg) => {
             {
               text: 'Открыть сайт',
               web_app: {
-                url: 'https://faceinder.ignorelist.com',  // Укажите здесь ваш URL сайта
+                url: 'https://c2ab-95-164-12-129.ngrok-free.app',  
               },
             },
           ],
@@ -89,3 +89,4 @@ bot.onText(/\/signin (.+)/, async (msg, match) => {
     bot.sendMessage(chatId, 'Произошла ошибка на сервере, попробуйте позже.');
   }
 });
+//ngrok http 5173

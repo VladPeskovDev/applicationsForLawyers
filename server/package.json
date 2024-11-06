@@ -6,8 +6,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/server.js",
     "db": "sequelize-cli db:drop && sequelize-cli db:create && sequelize-cli db:migrate && sequelize-cli db:seed:all",
-    "dev": "nodemon src/server.js",
-    "tg": "node src/telegramBot.js"
+    "dev": "nodemon src/server.js"
+    
   },
   "keywords": [],
   "author": "",
